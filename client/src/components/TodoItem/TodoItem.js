@@ -6,7 +6,7 @@ import {
   CheckIcon,
 } from "@heroicons/react/24/solid";
 
-const API_BASE = "https://mern-todo-app-5v9b.onrender.com:4001/api/todos";
+const API_BASE = "https://mern-todo-app-5v9b.onrender.com/api/todos";
 
 const TodoItem = ({ todo, setTodos }) => {
   const [isEdit, setIsEdit] = useState(false);
