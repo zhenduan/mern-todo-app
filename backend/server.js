@@ -8,9 +8,14 @@ require("dotenv").config();
 //Execute express
 const app = express();
 
+const corsOptions = {
+  origin: "https://mern-todo-app-frontend-8zuv.onrender.com/", // frontend URI (ReactJS)
+};
+
 //Middlewares
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Parse URL-encoded bodies (e.g., form data)
