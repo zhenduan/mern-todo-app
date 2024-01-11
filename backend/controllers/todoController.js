@@ -3,8 +3,15 @@ const Todo = require("../models/Todo.js");
 // Controller methods for CRUD operations
 exports.createTodo = async (req, res) => {
   try {
-    const newTask = await Todo.create(req.body);
-    res.status(201).json({ newTask });
+    console.log("req.body", req.body);
+    const { name } = req.body;
+    if (name === "") {
+      res.status(400).json({ error: "input cannot be empty" });
+    } else {
+      const newTask = await Todo.create(req.body);
+
+      res.status(201).json({ newTask });
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

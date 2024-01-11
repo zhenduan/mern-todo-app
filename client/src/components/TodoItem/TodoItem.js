@@ -6,15 +6,13 @@ import {
   CheckIcon,
 } from "@heroicons/react/24/solid";
 
-const API_BASE = "https://mern-todo-app-5v9b.onrender.com/api/todos";
-
 const TodoItem = ({ todo, setTodos }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [input, setInput] = useState(todo.name);
 
   const deleteHandler = async (id) => {
     try {
-      const response = await fetch(API_BASE + "/" + id, {
+      const response = await fetch(process.env.REACT_APP_API_BASE + "/" + id, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -32,7 +30,7 @@ const TodoItem = ({ todo, setTodos }) => {
   };
 
   const saveEditHandler = async (id) => {
-    const data = await fetch(API_BASE + "/" + id, {
+    const data = await fetch(process.env.REACT_APP_API_BASE + "/" + id, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -47,7 +45,7 @@ const TodoItem = ({ todo, setTodos }) => {
   };
 
   const GetTodos = () => {
-    fetch(API_BASE)
+    fetch(process.env.API_BASE)
       .then((res) => res.json())
       .then((data) => setTodos(data))
       .catch((err) => console.log(err));
