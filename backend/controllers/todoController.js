@@ -3,7 +3,6 @@ const Todo = require("../models/Todo.js");
 // Controller methods for CRUD operations
 exports.createTodo = async (req, res) => {
   try {
-    console.log("req.body", req.body);
     const { name } = req.body;
     if (name === "") {
       res.status(400).json({ error: "input cannot be empty" });
