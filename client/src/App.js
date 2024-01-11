@@ -7,9 +7,11 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [input, setInput] = useState("");
 
+  const API_BASE = "https://mern-todo-app-5v9b.onrender.com/api/todos";
+
   const createTodoHandler = async (e) => {
     e.preventDefault();
-    const data = await fetch(process.env.REACT_APP_API_BASE, {
+    const data = await fetch(API_BASE, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -23,7 +25,7 @@ function App() {
   };
 
   const GetTodos = () => {
-    fetch(process.env.REACT_APP_API_BASE)
+    fetch(API_BASE)
       .then((res) => res.json())
       .then((data) => setTodos(data))
       .catch((err) => console.log(err));
