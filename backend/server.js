@@ -8,21 +8,15 @@ require("dotenv").config();
 //Execute express
 const app = express();
 
-// const corsOptions = {
-//   origin: "https://mern-todo-app-frontend-8zuv.onrender.com/", // frontend URI (ReactJS)
-// };
-
 //Middlewares
 app.use(express.json());
 app.use(cors());
-// app.use(cors(corsOptions));
 app.use(express.json());
 
-// Parse URL-encoded bodies (e.g., form data)
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const connectionString = process.env.MONGO_URI;
-const port = 4001;
+const PORT = process.env.PORT || 8000;
 
 mongoose
   .connect(connectionString)
@@ -32,7 +26,7 @@ mongoose
 // Use todo routes
 app.use("/api", todoRoutes);
 
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
 
 // error handling
 app.use((err, req, res, next) => {
